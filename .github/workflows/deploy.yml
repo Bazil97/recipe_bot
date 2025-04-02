@@ -1,10 +1,70 @@
+# 👷 This is the name of the workflow (just for display in GitHub Actions UI)
 name: Deploy Recipe Bot
 
+# 🧲 When this workflow should run
 on:
   push:
     branches:
-      - main
+      - main  # 🔁 Runs only when you push to the 'main' branch
 
+# 🌍 Set environment variables used throughout the job
 env:
-  AWS_REGION: us-east-1
-  LAMBDA_ZIP
+  AWS_REGION: eu-west-1
+  LAMBDA_ZIP: lambda.zip
+  S3_BUCKET: your-deployment-bucket-name  # 🔐 replace with your actual bucket
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # 🚀 Use the latest Ubuntu runner provided by GitHub
+
+    steps:
+      # 📥 Step 1: Check out your repo's code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 🐍 Step 2: Set up Python (used for packaging Lambda or testing)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      # 🔧 Step 3: Set up Terraform CLI
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      # 🔐 Step 4: Configure AWS credentials (using secrets from GitHub)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # 🌱 Step 5: Initialize Terraform
+      - name: Terraform Init
+        working-directory: infra
+        run: terraform init
+
+      # 📐 Step 6: Apply Terraform changes (infra provisioning)
+      - name: Terraform Apply
+        working-directory: infra
+        run: terraform apply -auto-approve
+
+      # 📦 Step 7: Package the Lambda code into a zip file
+      - name: Package Lambda Function
+        run: |
+          cd lambda
+          zip -r ../${{ env.LAMBDA_ZIP }} .
+          cd ..
+
+      # ☁️ Step 8: Upload the Lambda package to S3
+      - name: Upload Lambda to S3
+        run: aws s3 cp ${{ env.LAMBDA_ZIP }} s3://${{ env.S3_BUCKET }}/${{ env.LAMBDA_ZIP }}
+
+      # 🔄 Step 9: Tell AWS Lambda to use the new code from S3
+      - name: Update Lambda Code
+        run: |
+          aws lambda update-function-code \
+            --function-name recipe-bot-lambda \
+            --s3-bucket ${{ env.S3_BUCKET }} \
+            --s3-key ${{ env.LAMBDA_ZIP }}

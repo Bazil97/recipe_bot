@@ -1,0 +1,10 @@
+name: Deploy Recipe Bot
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+  LAMBDA_ZIP

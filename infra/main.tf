@@ -9,10 +9,11 @@ module "iam" {
 
 module "lambda" {
   source = "./modules/lambda"
-  function_name = "recipe-bot-lambda"
-  s3_bucket     = var.s3_bucket
-  s3_key        = var.lambda_zip
-  handler       = "handler.lambda_handler"
-  runtime       = "python3.11"
-  lambda_role_arn = module.iam.lambda_role_arn
+
+  function_name    = var.function_name
+  s3_bucket        = var.s3_bucket
+  s3_key           = var.lambda_zip
+  handler          = "handler.lambda_handler"
+  runtime          = "python3.11"
+  lambda_role_arn  = module.iam.lambda_role_arn
 }

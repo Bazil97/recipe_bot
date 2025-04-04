@@ -1,25 +1,39 @@
 #!/bin/bash
 
+set -e  # Exit immediately on any error
+
+# === CONFIG ===
 LAMBDA_DIR="lambda"
 ZIP_FILE="lambda.zip"
 TF_DIR="infra"
-AWS_REGION="eu-west-1"
+TFVARS_FILE="$TF_DIR/terraform.tfvars"
 
-# Read bucket from terraform.tfvars
-S3_BUCKET=$(awk -F' *= *' '$1 == "s3_bucket" {print $2}' "$TF_DIR/terraform.tfvars" | tr -d '"')
+# === STEP 1: Extract bucket name from terraform.tfvars ===
+S3_BUCKET=$(awk -F' *= *' '$1 == "s3_bucket" {print $2}' "$TFVARS_FILE" | tr -d '"')
 
-echo "📦 Packaging Lambda..."
-cd "$LAMBDA_DIR" || exit 1
-zip -r "../$ZIP_FILE" . > /dev/null
-cd - > /dev/null
+if [[ -z "$S3_BUCKET" ]]; then
+  echo "S3 bucket name not found in $TFVARS_FILE"
+  exit 1
+fi
 
-echo "☁️  Uploading to S3 bucket $S3_BUCKET..."
-aws s3 cp "$ZIP_FILE" "s3://$S3_BUCKET/$ZIP_FILE" --region "$AWS_REGION"
+echo "Packaging Lambda from $LAMBDA_DIR/..."
+cd "$LAMBDA_DIR"
+echo "📦 Zipping Lambda files..."
+if zip -r "../$ZIP_FILE" . > /dev/null; then
+  echo "✅ Lambda zipped successfully: $ZIP_FILE"
+else
+  echo "❌ Failed to zip Lambda files"
+  exit 1
+fi
+cd ..
 
-echo "🚀 Running Terraform..."
-cd "$TF_DIR" || exit 1
+echo "Uploading $ZIP_FILE to s3://$S3_BUCKET/$ZIP_FILE..."
+aws s3 cp "$ZIP_FILE" "s3://$S3_BUCKET/$ZIP_FILE"
+
+echo "Deploying with Terraform..."
+cd "$TF_DIR"
 terraform init
 terraform apply -auto-approve
+cd ..
 
-cd - > /dev/null
-echo "✅ Done!"
+echo "✅ Deployment complete!"

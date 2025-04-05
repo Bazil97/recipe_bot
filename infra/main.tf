@@ -4,7 +4,7 @@ provider "aws" {
 
 module "iam" {
   source = "./modules/iam"
-  lambda_role_name = "lambda_execution_role"
+  lambda_role_name = "recipebot_lambda_execution_role"
 }
 
 module "lambda" {

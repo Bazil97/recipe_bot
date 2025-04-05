@@ -1,0 +1,20 @@
+# Ignore the Lambda deployment package
+lambda.zip
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc 
+
+#Terraform loacl state and logs
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/crash.log
+
+# AWS Credentials
+*.pem
+*.key
+
+# Zip artifacts from script
+*.zip

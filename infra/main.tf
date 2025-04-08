@@ -7,6 +7,12 @@ module "s3_bucket" {
   bucket_name = var.s3_bucket
 }
 
+module "ecr" {
+  source          = "./modules/ecr"
+  repository_name = var.ecr_repository_name
+  environment     = var.environment
+}
+
 module "iam" {
   source = "./modules/iam"
   lambda_role_name = "recipebot_lambda_execution_role"

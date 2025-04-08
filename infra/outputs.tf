@@ -5,3 +5,7 @@ output "lambda_function_name" {
 output "bucket_name" {
   value = module.s3_bucket.bucket_name
 }
+
+output "ecr_repository_url" {
+  value = module.ecr.repository_url
+}

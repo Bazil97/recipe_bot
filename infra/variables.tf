@@ -17,3 +17,13 @@ variable "function_name" {
   description = "Lambda function name"
   type        = string
 }
+
+variable "ecr_repository_name" {
+  description = "Name of the ECR repository"
+  default     = "recipebot-lambda"
+}
+
+variable "environment" {
+  description = "Deployment environment"
+  default     = "dev"
+}

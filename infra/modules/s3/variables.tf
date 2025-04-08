@@ -1,8 +1,3 @@
-variable "tags" {
-  description = "Common tags to apply to resources"
-  type        = map(string)
-}
-
 variable "bucket_name" {
   description = "Undocumented variable: bucket_name"
   type        = string

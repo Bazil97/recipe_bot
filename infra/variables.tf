@@ -25,5 +25,15 @@ variable "ecr_repository_name" {
 
 variable "environment" {
   description = "Deployment environment"
-  default     = "dev"
+  type        = string
+}
+
+variable "project" {
+  description = "Name of the project"
+  type        = string
+}
+
+variable "owner" {
+  description = "Owner or team responsible"
+  type        = string
 }

@@ -1,16 +1,28 @@
+locals {
+  common_tags = {
+    environment = var.environment
+    project     = var.project
+    owner       = var.owner
+  }
+}
+
 provider "aws" {
   region = var.aws_region
 }
 
-module "s3_bucket" {
+module "s3" {
   source      = "./modules/s3"
   bucket_name = var.s3_bucket
+  force_destroy = var.force_destroy
+  tags        = local.common_tags
+  sse_algorithm = var.sse_algorithm
+  versioning_status = var.versioning_status
 }
 
 module "ecr" {
   source          = "./modules/ecr"
   repository_name = var.ecr_repository_name
-  environment     = var.environment
+  tags            = local.common_tags
 }
 
 module "iam" {

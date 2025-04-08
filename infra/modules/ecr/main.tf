@@ -7,8 +7,5 @@ resource "aws_ecr_repository" "this" {
 
   image_tag_mutability = "MUTABLE"
 
-  tags = {
-    Name        = var.repository_name
-    Environment = var.environment
-  }
+  tags = var.tags
 }

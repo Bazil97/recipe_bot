@@ -1,9 +1,9 @@
-variable "repository_name" {
-  description = "The name of the ECR repository"
-  type        = string
+variable "tags" {
+  description = "Common tags to apply to resources"
+  type        = map(string)
 }
 
-variable "environment" {
-  description = "Deployment environment (e.g. dev, prod)"
+variable "repository_name" {
+  description = "The name of the ECR repository"
   type        = string
 }

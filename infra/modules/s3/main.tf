@@ -3,12 +3,7 @@ resource "aws_s3_bucket" "this" {
 
   force_destroy = true  # helpful for dev/test buckets
 
-  tags = {
-    Name        = "${var.bucket_prefix}-${var.environment}"
-    Environment = var.environment
-    Owner       = var.owner
-    Project     = var.project
-  }
+  tags = var.tags
 }
 
 # Enable versioning

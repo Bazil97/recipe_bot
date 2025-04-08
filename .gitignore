@@ -11,6 +11,7 @@ infra/.terraform/
 infra/terraform.tfstate
 infra/terraform.tfstate.backup
 infra/crash.log
+infra/secrets.auto.tfvars
 
 # AWS Credentials
 *.pem

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "this" {
-  bucket = "${var.bucket_prefix}-${var.environment}"
+  bucket = "${var.project}-${var.environment}"
 
   force_destroy = true  # helpful for dev/test buckets
 

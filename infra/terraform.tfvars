@@ -1,7 +1,7 @@
 # Core config
 environment         = "dev"
 project             = "recipebot"
-owner               = "your-name"
+owner               = "csb"
 
 # S3
 s3_bucket           = "recipebot-deploy-dev"

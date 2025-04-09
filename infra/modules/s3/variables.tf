@@ -32,3 +32,8 @@ variable "owner" {
   description = "Owner or team responsible"
   type        = string
 }
+
+variable "tags" {
+  description = "Common tags to apply to resources"
+  type        = map(string)
+}

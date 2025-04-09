@@ -1,8 +1,3 @@
-variable "tags" {
-  description = "Common tags to apply to resources"
-  type        = map(string)
-}
-
 variable "aws_region" {
   description = "AWS region for resources"
   type        = string
@@ -55,5 +50,10 @@ variable "s3_bucket_name" {
 
 variable "image_uri" {
   description = "Undocumented variable: image_uri"
+  type        = string
+}
+
+variable "openai_api_key" {
+  description = "Undocumented variable: openai_api_key"
   type        = string
 }

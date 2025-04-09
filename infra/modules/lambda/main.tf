@@ -1,8 +1,15 @@
 resource "aws_lambda_function" "this" {
   function_name = var.function_name
-  s3_bucket     = var.s3_bucket
-  s3_key        = var.s3_key
-  handler       = var.handler
-  runtime       = var.runtime
+  package_type  = "Image"
+  image_uri     = var.image_uri
   role          = var.lambda_role_arn
+
+  environment {
+    variables = {
+      OPENAI_API_KEY = var.openai_api_key
+    }
+  }
+
+  timeout      = 10
+  memory_size  = 128
 }

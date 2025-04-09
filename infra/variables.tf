@@ -8,16 +8,6 @@ variable "aws_region" {
   type        = string
 }
 
-variable "s3_bucket" {
-  description = "S3 bucket containing Lambda ZIP"
-  type        = string
-}
-
-variable "lambda_zip" {
-  description = "Key of the Lambda ZIP in S3"
-  type        = string
-}
-
 variable "function_name" {
   description = "Lambda function name"
   type        = string
@@ -55,5 +45,15 @@ variable "sse_algorithm" {
 
 variable "versioning_status" {
   description = "Undocumented variable: versioning_status"
+  type        = string
+}
+
+variable "s3_bucket_name" {
+  description = "Undocumented variable: bucket_name"
+  type        = string
+}
+
+variable "image_uri" {
+  description = "Undocumented variable: image_uri"
   type        = string
 }

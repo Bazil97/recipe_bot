@@ -1,4 +1,4 @@
-variable "bucket_name" {
+variable "s3_bucket_name" {
   description = "Undocumented variable: bucket_name"
   type        = string
 }

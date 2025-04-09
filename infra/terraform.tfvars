@@ -2,6 +2,7 @@
 environment         = "dev"
 project             = "recipebot"
 owner               = "csb"
+aws_region          = "eu-west-2"
 
 # S3
 s3_bucket           = "recipebot-deploy-dev"

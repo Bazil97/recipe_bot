@@ -15,4 +15,4 @@ ecr_repository_name = "recipebot-lambda"
 
 # Lambda
 function_name       = "recipebot-lambda"
-image_uri           = "123456789012.dkr.ecr.eu-west-1.amazonaws.com/recipebot-lambda:latest"
+image_uri           = "123456789012.dkr.ecr.eu-west-2.amazonaws.com/recipebot-lambda:latest"

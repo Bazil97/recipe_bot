@@ -12,7 +12,7 @@ provider "aws" {
 
 module "s3" {
   source      = "./modules/s3"
-  bucket_name = var.s3_bucket
+  bucket = var.s3_bucket_name
   force_destroy = var.force_destroy
   tags        = local.common_tags
   sse_algorithm = var.sse_algorithm

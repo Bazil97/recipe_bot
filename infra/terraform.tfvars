@@ -5,7 +5,7 @@ owner               = "csb"
 aws_region          = "eu-west-2"
 
 # S3
-s3_bucket_name          = "recipebot-deploy-dev"
+s3_bucket_name      = "recipebot-deploy-dev"
 force_destroy       = "true"
 sse_algorithm       = "AES256"
 versioning_status   = "Enabled"

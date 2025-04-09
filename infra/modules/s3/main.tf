@@ -1,27 +1,24 @@
 resource "aws_s3_bucket" "this" {
-  bucket = "${var.s3_bucket_name}"
-
-  force_destroy = true  # helpful for dev/test buckets
+  bucket        = var.s3_bucket_name
+  force_destroy = var.force_destroy
 
   tags = var.tags
 }
 
-# Enable versioning
 resource "aws_s3_bucket_versioning" "this" {
   bucket = aws_s3_bucket.this.id
 
   versioning_configuration {
-    status = "Enabled"
+    status = var.versioning_status
   }
 }
 
-# Enable server-side encryption
 resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
-  bucket = aws_s3_bucket.this.bucket
+  bucket = aws_s3_bucket.this.id
 
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+      sse_algorithm = var.sse_algorithm
     }
   }
 }

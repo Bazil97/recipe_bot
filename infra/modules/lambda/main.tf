@@ -2,7 +2,7 @@ resource "aws_lambda_function" "this" {
   function_name = var.function_name
   package_type  = "Image"
   image_uri     = var.image_uri
-  role          = var.lambda_role_arn
+  role = var.lambda_role_arn
 
   environment {
     variables = {

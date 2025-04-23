@@ -11,7 +11,7 @@ sse_algorithm       = "AES256"
 versioning_status   = "Enabled"
 
 # ECR
-ecr_repository_name = "recipebot-lambda"
+ecr_repository_name = "recipebot-ecr"
 
 # Lambda
 function_name       = "recipebot-lambda"

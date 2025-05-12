@@ -3,7 +3,7 @@
 # Configuration
 AWS_REGION="eu-west-2"
 REPO_NAME="recipebot-ecr"
-IMAGE_TAG="latest"
+IMAGE_TAG="placeholder"
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 IMAGE_TAG="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${REPO_NAME}:${IMAGE_TAG}"
 

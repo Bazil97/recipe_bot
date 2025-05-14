@@ -1,0 +1,92 @@
+Building and pushing Lambda Docker image...
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 515B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for public.ecr.aws/lambda/python:3.11
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM public.ecr.aws/lambda/python:3.11
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 2.53kB done
+#5 DONE 0.0s
+
+#6 [3/5] COPY requirements.txt .
+#6 CACHED
+
+#7 [2/5] WORKDIR /var/task
+#7 CACHED
+
+#8 [4/5] RUN pip install -r requirements.txt --target .
+#8 CACHED
+
+#9 [5/5] COPY handler.py .
+#9 DONE 0.0s
+
+#10 exporting to image
+#10 exporting layers 0.0s done
+#10 writing image sha256:21ad2d4c8fc7e13b90112eb77bce3a8dcb7c94422399a2da51ceab9ea1853419 done
+#10 naming to docker.io/library/recipebot-ecr done
+#10 DONE 0.0s
+Authenticating with ECR...
+Login Succeeded
+Tagging and pushing image...
+The push refers to repository [891377271718.dkr.ecr.eu-west-2.amazonaws.com/recipebot-ecr]
+ad3c3881d3e8: Preparing
+c7eb8d2d4cdb: Preparing
+82e1e4962c26: Preparing
+5f70bf18a086: Preparing
+2b583438fb30: Preparing
+e1a22dc48b05: Preparing
+b5da4b018965: Preparing
+a45e398ba284: Preparing
+ac0501fbf571: Preparing
+cc6af1d1cdea: Preparing
+b5da4b018965: Waiting
+e1a22dc48b05: Waiting
+a45e398ba284: Waiting
+cc6af1d1cdea: Waiting
+ac0501fbf571: Waiting
+82e1e4962c26: Layer already exists
+c7eb8d2d4cdb: Layer already exists
+5f70bf18a086: Layer already exists
+2b583438fb30: Layer already exists
+e1a22dc48b05: Layer already exists
+ac0501fbf571: Layer already exists
+a45e398ba284: Layer already exists
+b5da4b018965: Layer already exists
+cc6af1d1cdea: Layer already exists
+ad3c3881d3e8: Pushed
+latest: digest: sha256:bc70d2bcabb2488f5247130a06fb60ac556b109f1a2a936fdd86627b59617f17 size: 2412
+Updating Lambda function to use image: 891377271718.dkr.ecr.eu-west-2.amazonaws.com/recipebot-ecr:latest
+[0m[1mmodule.ecr.aws_ecr_repository.this: Refreshing state... [id=recipebot-ecr][0m
+[0m[1mmodule.iam.aws_iam_role.lambda_exec: Refreshing state... [id=lambda_execution_role][0m
+[0m[1mmodule.s3.aws_s3_bucket.this: Refreshing state... [id=recipebot-deploy-dev][0m
+[0m[1mmodule.s3.aws_s3_bucket_versioning.this: Refreshing state... [id=recipebot-deploy-dev][0m
+[0m[1mmodule.s3.aws_s3_bucket_server_side_encryption_configuration.this: Refreshing state... [id=recipebot-deploy-dev][0m
+[0m[1mmodule.iam.aws_iam_role_policy_attachment.lambda_basic_execution: Refreshing state... [id=lambda_execution_role-20250415204640013200000001][0m
+[0m[1mmodule.iam.aws_iam_role_policy_attachment.lambda_ecr_permissions: Refreshing state... [id=lambda_execution_role-20250415204640233900000002][0m
+[0m[1mmodule.iam.aws_iam_role_policy_attachment.admin: Refreshing state... [id=lambda_execution_role-20250421202055099500000001][0m
+[0m[1mmodule.lambda.aws_lambda_function.this: Refreshing state... [id=recipebot-lambda][0m
+
+[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+
+[0mTerraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+[0m[1m[32m
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0mbucket_name = "recipebot-deploy-dev"
+ecr_repository_url = "891377271718.dkr.ecr.eu-west-2.amazonaws.com/recipebot-ecr"
+lambda_function_name = "recipebot-lambda"
+Function deployment complete.

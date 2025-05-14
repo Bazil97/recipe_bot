@@ -23,3 +23,7 @@ infra/secrets.auto.tfvars
 
 # lambda packages
 lambda/lambda-package
+
+#lambda test file
+test.py
+lambda_function.log

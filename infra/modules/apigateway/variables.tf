@@ -9,3 +9,14 @@ variable "lambda_function_name" {
   type        = string
   
 }
+
+variable "tags" {
+  description = "Common tags to apply to resources"
+  type        = map(string)
+}
+
+variable "api_id" {
+  description = "The ID of the API Gateway."
+  type        = string
+  
+}

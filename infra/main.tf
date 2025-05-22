@@ -41,7 +41,7 @@ module "lambda" {
 module "apigateway" {
   source            = "./modules/apigateway"
   lambda_invoke_arn = module.lambda.lambda_invoke_arn
-  lambda_function_name = module.lambda.function_name
+  lambda_function_name = module.lambda.lambda_function_name
   api_id            = module.apigateway.api_id
   tags              = local.common_tags
 }

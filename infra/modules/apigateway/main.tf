@@ -15,7 +15,7 @@ resource "aws_apigatewayv2_integration" "recipe_integration" {
 resource "aws_apigatewayv2_route" "recipe_route" {
   api_id    = var.api_id
   route_key = "POST /recipe"
-  target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+  target    = "integrations/${aws_apigatewayv2_integration.recipe_integration.id}"
   
 }
 

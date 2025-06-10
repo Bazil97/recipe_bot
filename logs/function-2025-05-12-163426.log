@@ -1,0 +1,58 @@
+Building and pushing Lambda Docker image...
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 515B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for public.ecr.aws/lambda/python:3.11
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM public.ecr.aws/lambda/python:3.11
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 67B done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /var/task
+#6 CACHED
+
+#7 [3/5] COPY requirements.txt .
+#7 CACHED
+
+#8 [4/5] RUN pip install -r requirements.txt --target .
+#8 CACHED
+
+#9 [5/5] COPY handler.py .
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:40603fa924ea570ccb2f5a08a231e5871655a6707c68c1abfe11135db5cfedcb done
+#10 naming to docker.io/library/recipebot-lambda done
+#10 DONE 0.0s
+Authenticating with ECR...
+Login Succeeded
+Tagging and pushing image...
+The push refers to repository [891377271718.dkr.ecr.eu-west-2.amazonaws.com/recipebot-lambda]
+c842e4f71cff: Preparing
+c7eb8d2d4cdb: Preparing
+82e1e4962c26: Preparing
+5f70bf18a086: Preparing
+2b583438fb30: Preparing
+e1a22dc48b05: Preparing
+b5da4b018965: Preparing
+a45e398ba284: Preparing
+ac0501fbf571: Preparing
+cc6af1d1cdea: Preparing
+e1a22dc48b05: Waiting
+b5da4b018965: Waiting
+a45e398ba284: Waiting
+ac0501fbf571: Waiting
+cc6af1d1cdea: Waiting
+name unknown: The repository with name 'recipebot-lambda' does not exist in the registry with id '891377271718'

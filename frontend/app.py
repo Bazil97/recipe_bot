@@ -1,3 +1,6 @@
+#####################################################################################################
+# to run this app, use the command: streamlit run app.py but make sure you're in the right directory
+######################################################################################################
 import streamlit as st
 import requests
 
